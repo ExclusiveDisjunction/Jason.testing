@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.h": "cpp",
+        "new": "cpp",
+        "string": "cpp",
+        "tuple": "cpp",
+        "typeinfo": "cpp",
+        "stdexcept": "cpp"
+    },
+    "cmake.generator": "Ninja",
+    "cmake.cmakePath": "/opt/homebrew/bin/cmake",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.configureOnOpen": true
+}

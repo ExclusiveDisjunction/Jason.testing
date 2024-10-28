@@ -19,6 +19,7 @@ private:
     std::optional<std::vector<unsigned>> binding;
     std::optional<unsigned long> boundPageIndex;
     std::pair<unsigned, unsigned> location;
+    std::unordered_map<unsigned, bool> knownPages;
 
     bool boundEof = false;
 
@@ -26,7 +27,7 @@ private:
     unsigned pageSize;
 
 public:
-    PackagePager(std::filesystem::path location, unsigned char UnitSize, unsigned PageSize);
+    PackagePager(std::filesystem::path location, unsigned char UnitSize, unsigned PageSize, const std::vector<std::vector<unsigned>>& allocatedElements);
     PackagePager(const PackagePager& obj) = delete;
     PackagePager(PackagePager&& obj) noexcept;
     ~PackagePager();
@@ -46,6 +47,7 @@ public:
     bool WipeAll();
 
     //bool Allocate(unsigned pages, const PackageEntryIndex& index);
+    bool Allocate(unsigned pages, std::vector<unsigned>& Pages);
 
     //void Bind(const PackageEntryIndex& index);
     void Bind(std::vector<unsigned> pages);

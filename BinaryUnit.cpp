@@ -36,7 +36,7 @@ void Unit::Allocate(char* data, unsigned char size, bool copy)
     if (copy)
     {
         this->Data = new char[size];
-        memcpy(data, this->Data, size);
+        memcpy(this->Data, data, size);
     }
     else
         this->Data = data;

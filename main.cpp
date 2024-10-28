@@ -8,6 +8,7 @@ int main()
     const unsigned char unitSize = 1;
     const unsigned pageSize = 10;
 
+    /*
     {
         std::fstream host("tester.txt", std::ios::out | std::ios::in | std::ios::trunc);
         auto size = 4 * pageSize * unitSize;
@@ -19,6 +20,7 @@ int main()
 
         host.close();
     }
+     */
 
     std::vector<std::vector<unsigned>> Pages = {
         {0, 2},
@@ -38,10 +40,11 @@ int main()
             target.emplace_back(elem);
     }
 
-    PackagePager pg("tester.txt", unitSize, pageSize);
+    PackagePager pg("tester.txt", unitSize, pageSize, Pages);
     for (unsigned i = 0; i < Pages.size(); i++)
     {
         pg.Bind(Pages[i]);
+    
         if (!pg.WriteUnits(Units[i]))
             std::cout << "Write failed!" << std::endl;
         else
@@ -60,7 +63,8 @@ int main()
             std::cout << "Encoded message was: " << encoded << std::endl;
         }
 
-        std::cout << std::endl;
+        pg.Reset();
+        pg.Allocate(3, Pages[i]);
     }
     return 0;
 }
