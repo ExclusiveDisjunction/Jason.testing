@@ -64,7 +64,9 @@ int main()
         }
 
         pg.Reset();
+        pg.Flush();
         pg.Allocate(3, Pages[i]);
+        pg.Flush();
     }
     return 0;
 }
